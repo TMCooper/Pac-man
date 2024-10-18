@@ -6,7 +6,7 @@
 #include "config.h"
 
 // Déclaration de la référence de l'instance de XamGraph
-XamGraph graph(800, 600, "Pac-Man");
+XamGraph graph(755, 605, "Pac-Man");
 
 int main() {
     const int LARGEUR_GRILLE = 25;
