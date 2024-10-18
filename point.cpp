@@ -1,6 +1,7 @@
 #include "point.h"
 #include "joueur.h" // Inclure le fichier d'en-tête pour accéder à la définition de Joueur
 #include <xamgraph.h>
+#include "grille.h"
 
 extern XamGraph graph; // Assurez-vous que cela est correct
 
@@ -27,10 +28,10 @@ void dessinerPoint(int largeur, int hauteur, int tailleCellule) {
                                    tailleCellule / 4); // Dessiner le point
             } else if (pointStates[y][x] == 0) {
                 graph.setColor(XAM_BLUE); // Couleur des points disparus
-                // graph.filledCircle(x * tailleCellule + tailleCellule / 2,
-                //                    y * tailleCellule + tailleCellule / 2,
-                //                    tailleCellule / 4); // Dessiner le point comme disparu
-                graph.filledRectangle(0, 0, 20 * tailleCellule, 25 * tailleCellule);
+                graph.filledCircle(x * tailleCellule + tailleCellule / 2,
+                                   y * tailleCellule + tailleCellule / 2,
+                                   tailleCellule / 4); // Dessiner le point comme disparu
+                // graph.filledCenteredRectangle(x, y, hauteur, largeur);
             }
         }
     }
