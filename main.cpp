@@ -13,13 +13,12 @@ int main() {
     const int HAUTEUR_GRILLE = 20;
     const int TAILLE_CELLULE = 30;
 
-    const int colonnes = 20;
-    const int lignes = 25;
-
+    
     initPoints(); // Initialise les points
-
     Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
     dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
+    dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+
 
 
     while (true) {
@@ -31,7 +30,7 @@ int main() {
 
         // Dessiner la grille et les points
         dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
-        
+
         // Dessiner le joueur
         joueur.dessiner();
 
