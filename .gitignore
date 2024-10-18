@@ -6,3 +6,5 @@ _ABOUT
 .__VERSION
 _VERSION
 main
+.deps
+.objs
