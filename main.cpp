@@ -1,25 +1,34 @@
-#include <stdio.h>
 #include <xamgraph.h>
-#include "grille.h"  // Inclusion du fichier grille.h
-#include "point.h" //inclusion du fichier point.h
+#include "grille.h"
+#include "point.h"
+#include "joueur.h"
 
 // Déclaration de l'instance de la classe XamGraph
-XamGraph graph(800, 600, "Pac-Man"); // Taille de la fenetre de jeu 
+XamGraph graph(800, 600, "Pac-Man");
 
 int main() {
-    // Paramètres de la grille (20x20 cellules, chaque cellule fait 30 pixels)
     int lignes = 20;
-    int colonnes = 20;
+    int colonnes = 25;
     int tailleCellule = 30;
 
-    // Dessiner la grille de base
-    dessinerGrille(lignes, colonnes, tailleCellule);
+    // Création d'un joueur au centre de la grille
+    Joueur joueur(tailleCellule / 2, tailleCellule / 2, tailleCellule / 4);
 
-    // Dessiner les point
-    dessinerPoint(lignes, colonnes, tailleCellule);
+    while (true) {
+        // Gérer les entrées du clavier
+        gererClavier(joueur);  // Utilise l'instance joueur
 
-    // Lancer la boucle d'événements
-    graph.run();  // Appeler la méthode run() sur l'objet graph
+        // Dessiner la grille et les points
+        dessinerGrille(lignes, colonnes, tailleCellule);
+        dessinerPoint(lignes, colonnes, tailleCellule);
 
-    return 0;  // La méthode close() est automatiquement appelée lors de la sortie de main()
+        // Déplacer et dessiner le joueur
+        joueur.deplacer();    // Utilise l'instance joueur
+        joueur.dessiner();    // Utilise l'instance joueur
+
+        // Actualiser l'affichage
+        graph.updateScreen();
+    }
+
+    return 0;
 }
