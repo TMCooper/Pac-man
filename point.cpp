@@ -27,9 +27,10 @@ void dessinerPoint(int largeur, int hauteur, int tailleCellule) {
                                    tailleCellule / 4); // Dessiner le point
             } else if (pointStates[y][x] == 0) {
                 graph.setColor(XAM_BLUE); // Couleur des points disparus
-                graph.filledCircle(x * tailleCellule + tailleCellule / 2,
-                                   y * tailleCellule + tailleCellule / 2,
-                                   tailleCellule / 4); // Dessiner le point comme disparu
+                // graph.filledCircle(x * tailleCellule + tailleCellule / 2,
+                //                    y * tailleCellule + tailleCellule / 2,
+                //                    tailleCellule / 4); // Dessiner le point comme disparu
+                graph.filledRectangle(0, 0, 20 * tailleCellule, 25 * tailleCellule);
             }
         }
     }
