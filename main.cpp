@@ -19,8 +19,6 @@ int main() {
     dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
     dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
 
-
-
     while (true) {
         // Gérer les entrées du clavier
         gererClavier(joueur);
