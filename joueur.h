@@ -10,9 +10,6 @@ public:
     // Constructeur
     Joueur(int posX, int posY, int tailleJoueur);
 
-    // Méthode pour déplacer le joueur
-    void deplacer(char direction); // Modifie ici
-
     // Méthode pour dessiner le joueur
     void dessiner();
 };
