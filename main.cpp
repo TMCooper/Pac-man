@@ -1,32 +1,37 @@
 #include <xamgraph.h>
+#include <SDL2/SDL.h>
 #include "grille.h"
 #include "point.h"
 #include "joueur.h"
+#include "config.h"
 
-// Déclaration de l'instance de la classe XamGraph
+// Déclaration de la référence de l'instance de XamGraph
 XamGraph graph(800, 600, "Pac-Man");
 
 int main() {
-    int lignes = 20;
-    int colonnes = 25;
-    int tailleCellule = 30;
+    const int LARGEUR_GRILLE = 25;
+    const int HAUTEUR_GRILLE = 20;
+    const int TAILLE_CELLULE = 30;
 
-    // Création d'un joueur au centre de la grille
-    Joueur joueur(tailleCellule / 2, tailleCellule / 2, tailleCellule / 4);
+    initPoints(); // Initialise les points
+
+    Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
 
     while (true) {
         // Gérer les entrées du clavier
-        gererClavier(joueur);  // Utilise l'instance joueur
+        gererClavier(joueur);
+
+        // Vérifier les collisions
+        verifierCollision(joueur);
 
         // Dessiner la grille et les points
-        dessinerGrille(lignes, colonnes, tailleCellule);
-        dessinerPoint(lignes, colonnes, tailleCellule);
+        dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
+        dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+        
+        // Dessiner le joueur
+        joueur.dessiner();
 
-        // Déplacer et dessiner le joueur
-        joueur.deplacer();    // Utilise l'instance joueur
-        joueur.dessiner();    // Utilise l'instance joueur
-
-        // Actualiser l'affichage
+        // Mettre à jour l'écran
         graph.updateScreen();
     }
 

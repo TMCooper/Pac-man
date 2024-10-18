@@ -8,3 +8,4 @@ _VERSION
 main
 .deps
 .objs
+.vscode
