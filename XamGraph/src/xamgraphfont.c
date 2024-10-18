@@ -177,7 +177,7 @@ int xamPrintf( int x, int y, const char* format, ... )
 
 	va_start( argptr, format ) ;
 
-	cnt = vsprintf( str, format, argptr ) ;
+	cnt = vsnprintf( str, 255, format, argptr ) ; // vsprintf( str, format, argptr ) ;
 
 #ifdef	XAMGRAPHCLASS
 	textOut( x, y, str ) ;

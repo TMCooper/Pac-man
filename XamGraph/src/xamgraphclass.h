@@ -224,6 +224,16 @@ class XamGraph
   	int				m_textStyle ;			// style du texte
 
   	bool			m_quit ;
+  	
+	// new v0.6 : undocumented
+  public :
+#ifdef XAMGRAPH_SDL2
+  	SDL_Window*		_window() const { return m_window ; }		// graphic window
+  	SDL_Renderer*	_renderer() const { return m_renderer ; }	// window renderer
+  	SDL_Texture*	_texture() const { return m_texture ; }		// active GPU surface
+#endif
+  	SDL_Surface*	_video() { return m_video ; }				// surface in video memory
+
 } ;
 
 #endif

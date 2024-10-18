@@ -25,7 +25,8 @@ DEFINES     = -std=c+11 -DXAM_DEBUG
 AUX			=
 DESTDIR		= $(HOME)/bin
 
-#WITH_XAMPNM = 1
+#WITH_XAMPNM    = 1
+#WITH_XAMSPRITE = 1
 
 # -------------------------------------------------------------------
 
@@ -64,6 +65,7 @@ ifeq ($(HOST),Darwin)
     	INCDIR += -I/Library/Frameworks/SDL2_image.framework/Headers
     	INCDIR += -I/Library/Frameworks/SDL2_ttf.framework/Headers
     	LIBS    = -F/Library/Frameworks/
+	LIBS   += -Wl,-rpath,/Library/Frameworks
     	LIBS   += -framework SDL2 -framework SDL2_image -framework SDL2_ttf -framework Cocoa
     endif
 # Mac OS ARM
@@ -105,6 +107,13 @@ ifdef WITH_XAMPNM
 	INC += $(XAMPNMDIR)/xampnm.h
 endif
 
+ifdef WITH_XAMSPRITE
+	XAMSPRITEDIR = $(XAMRELDIR)/../tools/xamsprite
+	INCDIR	+= -I$(XAMSPRITEDIR)
+	SRC += $(XAMSPRITEDIR)/xamsprite.cpp
+	INC += $(XAMSPRITEDIR)/xamsprite.h
+endif
+
 # -------------------------------------------------------------------
 
 .PHONY: all debug sdllink dirdeps dirobjs clean install dist locv
@@ -140,6 +149,15 @@ endif
 endif
 
 # -------------------------------------------------------------------
+# XamSprite / compiler compatibility
+
+ifdef WITH_XAMSPRITE
+ifeq ($(CC),gcc)
+	@echo "WITH_XAMSPRITE incompatible with 'gcc' compiler!"
+endif
+endif
+
+# -------------------------------------------------------------------
 
 dirdeps:
 	@if ! [ -e "$(DEPSDIR)" ] ; then $(MAKEDIR) $(DEPSDIR) ; fi
@@ -165,6 +183,13 @@ $(OBJSDIR)/%.o: $(XAMRELDIR)/%$(EXT)
 
 ifdef WITH_XAMPNM
 $(OBJSDIR)/%.o: $(XAMPNMDIR)/%$(EXT)
+	@echo "> compilation de $<..."
+	@$(CC) -MM -MF $(DEPSDIR)/$(notdir $(subst .o,.d,$@)) -MP -MT $@ $(CFLAGS) $(INCDIR) $<
+	$(CC) $(CFLAGS) -o $(OBJSDIR)/$(notdir $(subst $(EXT),.o,$@)) -c $< $(INCDIR)
+endif
+
+ifdef WITH_XAMSPRITE
+$(OBJSDIR)/%.o: $(XAMSPRITEDIR)/%$(EXT)
 	@echo "> compilation de $<..."
 	@$(CC) -MM -MF $(DEPSDIR)/$(notdir $(subst .o,.d,$@)) -MP -MT $@ $(CFLAGS) $(INCDIR) $<
 	$(CC) $(CFLAGS) -o $(OBJSDIR)/$(notdir $(subst $(EXT),.o,$@)) -c $< $(INCDIR)
