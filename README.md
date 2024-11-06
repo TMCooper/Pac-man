@@ -9,10 +9,10 @@ sudo install lazygit /usr/local/bin
 ## to install sdl : 
 
 - ``sudo apt install libsdl2-dev``
-- sudo apt install libsdl2-image-dev
-- sudo apt install libsdl2-ttf-dev 
+- ``sudo apt install libsdl2-image-dev``
+- ``sudo apt install libsdl2-ttf-dev ``
 
 ## Fast config git global
-- git config --global user.name "Rias Gremory"
-- git config --global user.email "example@gmail.com"
-- git config --global user.password "your_password"
+- ``git config --global user.name "Rias Gremory"``
+- ``git config --global user.email "example@gmail.com"``
+- ``git config --global user.password "your_password"``
