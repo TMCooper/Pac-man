@@ -1,11 +1,10 @@
 demo
 Demo
 tools
-_ABOUT
 .__ABOUT
 .__VERSION
-_VERSION
 main
+template
 .deps
 .objs
 .vscode
