@@ -19,9 +19,10 @@ int main() {
     Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
     dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
     dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
-    exit_boutton();
+    draw_exit_boutton();
 
     while (true) {
+        SDL_Event event;
         // Gérer les entrées du clavier
         gererClavier(joueur);
 
@@ -34,6 +35,7 @@ int main() {
         // Dessiner le joueur
         joueur.dessiner();
 
+        handle_mouse_click(event);
         // Mettre à jour l'écran
         graph.updateScreen();
     }
