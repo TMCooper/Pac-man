@@ -22,4 +22,3 @@ public:
 void gererClavier(Joueur& joueur);
 
 #endif
-

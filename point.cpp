@@ -22,4 +22,3 @@ void dessinerPoint(int lignes, int colonnes, int tailleCellule) {
     // Actualiser l'affichage
     graph.updateScreen();
 }
-
