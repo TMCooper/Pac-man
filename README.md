@@ -1,9 +1,5 @@
 # Pac-man
 
-
-
-# Pac-man
-
 ## to install lazygit on ubuntu : 
 
 - ``sudo apt-get install build-essential libssl-dev libreadline-dev zlib1g-dev
