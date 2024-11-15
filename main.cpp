@@ -4,9 +4,10 @@
 #include "point.h"
 #include "joueur.h"
 #include "config.h"
+#include "boutton.h"
 
 // Déclaration de la référence de l'instance de XamGraph
-XamGraph graph(755, 605, "Pac-Man");
+XamGraph graph(755, 650, "Pac-Man");
 
 int main() {
     const int LARGEUR_GRILLE = 25;
@@ -18,6 +19,7 @@ int main() {
     Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
     dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
     dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+    exit_boutton();
 
     while (true) {
         // Gérer les entrées du clavier
