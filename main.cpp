@@ -4,6 +4,7 @@
 #include "point.h"
 #include "joueur.h"
 #include "config.h"
+#include "carte.h"
 
 // Déclaration de la référence de l'instance de XamGraph
 XamGraph graph(755, 605, "Pac-Man");
@@ -16,8 +17,9 @@ int main() {
     
     initPoints(); // Initialise les points
     Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
-    dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
-    dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+    // dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
+    // dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+    initCarte();
 
     while (true) {
         // Gérer les entrées du clavier
