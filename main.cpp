@@ -5,9 +5,10 @@
 #include "joueur.h"
 #include "config.h"
 #include "carte.h"
+#include "boutton.h"
 
 // Déclaration de la référence de l'instance de XamGraph
-XamGraph graph(755, 605, "Pac-Man");
+XamGraph graph(755, 650, "Pac-Man");
 
 int main() {
     const int LARGEUR_GRILLE = 25;
@@ -20,8 +21,10 @@ int main() {
     // dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
     // dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
     initCarte();
+    draw_exit_boutton();
 
     while (true) {
+        SDL_Event event;
         // Gérer les entrées du clavier
         gererClavier(joueur);
 
@@ -34,6 +37,7 @@ int main() {
         // Dessiner le joueur
         joueur.dessiner();
 
+        handle_mouse_click(event);
         // Mettre à jour l'écran
         graph.updateScreen();
     }
