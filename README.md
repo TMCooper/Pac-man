@@ -18,3 +18,12 @@ sudo install lazygit /usr/local/bin``
 - ``git config --global user.name "Rias Gremory"``
 - ``git config --global user.email "example@gmail.com"``
 - ``git config --global user.password "your_password"``
+
+## Install gh
+- ``sudo apt install gh``
+
+## Connection git with gh
+- ``gh auth login``
+
+## Logout
+- ``gh auth logout``
