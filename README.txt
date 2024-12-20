@@ -20,3 +20,8 @@ Le jeu se termine le joueur clique sur le bouton "Exit".
     )
 
 2. Utilisez le Makefile fourni pour compiler le programme : make
+
+En cas de soucis je vous invite sur mon repo affin de trouver une versions fonctionelle : 
+
+lien du repo : https://github.com/TMCooper/Pac-man
+clone repo : git clone https://github.com/TMCooper/Pac-man.git
