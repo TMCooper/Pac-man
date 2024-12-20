@@ -14,13 +14,14 @@ int carte[HAUTEUR_GRILLE][LARGEUR_GRILLE] = {
     {1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    // Ajoutez plus de lignes pour compléter la carte
 };
 
+// Fonction pour initialiser la carte (si nécessaire)
 void initCarte() {
     // Initialisation de la carte (si nécessaire)
 }
 
+// Fonction pour dessiner la carte
 void dessinerCarte(int tailleCellule) {
     for (int y = 0; y < HAUTEUR_GRILLE; y++) {
         for (int x = 0; x < LARGEUR_GRILLE; x++) {
