@@ -27,3 +27,11 @@ sudo install lazygit /usr/local/bin``
 
 ## Logout
 - ``gh auth logout``
+
+
+### Commande pour créer l'archive `tar.gz`
+
+Pour créer l'archive `tar.gz` contenant tous les fichiers nécessaires, utilisez la commande suivante dans le répertoire racine de votre projet :
+
+```sh
+tar -czvf pacman.tar.gz *.cpp *.h Makefile README.txt
