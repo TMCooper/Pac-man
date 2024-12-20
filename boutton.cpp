@@ -4,6 +4,7 @@
 // Déclaration d'une instance globale de XamGraph
 extern XamGraph graph;
 
+// Constantes pour la taille et la position du bouton
 const int TAILLE_HAUTEUR = 40;
 const int TAILLE_LARGEUR = 125;
 const int RECT_X = 625;
@@ -15,16 +16,18 @@ bool isMouseOverButton(int mouseX, int mouseY) {
             mouseY >= RECT_Y && mouseY <= RECT_Y + TAILLE_HAUTEUR);
 }
 
+// Fonction pour dessiner le bouton "Exit"
 void draw_exit_boutton() {
     // Définir la couleur du bouton (bleu ici)
     graph.setColor(XAM_BLUE);
-    
-    // Dessiner un bouton à la position (625, 605)
+
+    // Dessiner un rectangle rempli à la position (625, 605)
     graph.filledRectangle(RECT_X, RECT_Y, TAILLE_LARGEUR, TAILLE_HAUTEUR);
 
     // Définir la couleur du texte (blanc ici)
     graph.setColor(XAM_WHITE);
-    
+
+    // Texte à afficher sur le bouton
     const char* texte = "Exit";
 
     // Calculer la largeur et la hauteur du texte
@@ -39,7 +42,7 @@ void draw_exit_boutton() {
     graph.textOut(textX, textY, texte);
 }
 
-// Fonction qui gère le clic sur le bouton et qui quitte le programme si on clique dessus
+// Fonction pour gérer les clics de souris
 void handle_mouse_click(SDL_Event& event) {
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         int mouseX, mouseY;
