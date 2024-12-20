@@ -15,6 +15,6 @@ void initPoints();
 void dessinerPoint(int lignes, int colonnes, int tailleCellule);
 
 // Fonction pour vérifier les collisions avec les points
-void verifierCollision(Joueur& joueur);
+void verifierCollision(Joueur& joueur, int tailleCellule);
 
 #endif

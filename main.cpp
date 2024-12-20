@@ -6,6 +6,9 @@
 #include "config.h"
 #include "carte.h"
 #include "boutton.h"
+#include "global.h"
+#include <chrono>
+#include <thread>
 
 // Déclaration de la référence de l'instance de XamGraph
 XamGraph graph(755, 650, "Pac-Man");
@@ -14,14 +17,17 @@ int main() {
     // Initialiser les points
     initPoints();
 
-    // Créer un joueur
-    Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2);
-
-    // Dessiner la grille
-    dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
+    // Créer un joueur avec une valeur de déplacement initiale
+    Joueur joueur(TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE / 2, TAILLE_CELLULE);
 
     // Initialiser la carte
     initCarte();
+
+    // Redessiner la grille pour éviter les traces
+    dessinerGrille(HAUTEUR_GRILLE, LARGEUR_GRILLE, TAILLE_CELLULE);
+
+    // Dessiner les points
+    dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
 
     // Dessiner le bouton "Exit"
     draw_exit_boutton();
@@ -42,17 +48,20 @@ int main() {
             gererClavier(joueur, event);  // Gérer les entrées du clavier
         }
 
-        // Vérifier les collisions
-        verifierCollision(joueur);
+        // Mettre à jour la position du joueur
+        joueur.updatePosition();
 
-        // Dessiner les points
-        dessinerPoint(LARGEUR_GRILLE, HAUTEUR_GRILLE, TAILLE_CELLULE);
+        // Vérifier les collisions
+        verifierCollision(joueur, TAILLE_CELLULE);
 
         // Dessiner le joueur
         joueur.dessiner();
 
         // Mettre à jour l'écran
         graph.updateScreen();
+
+        // Ajouter un délai pour ralentir le mouvement
+        std::this_thread::sleep_for(std::chrono::milliseconds(175));
     }
 
     return 0;

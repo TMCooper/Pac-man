@@ -7,15 +7,53 @@
 extern XamGraph graph;
 
 // Constructeur de la classe Joueur
-Joueur::Joueur(int posX, int posY, int tailleJoueur)
-    : x(posX), y(posY), taille(tailleJoueur) {}
+Joueur::Joueur(int posX, int posY, int tailleJoueur, int deplacementJoueur)
+    : x(posX), y(posY), taille(tailleJoueur), direction('R'), deplacement(deplacementJoueur), oldX(posX), oldY(posY) {}
 
 // Méthode pour dessiner le joueur
 void Joueur::dessiner() {
-    // Définir la couleur du joueur (jaune ici)
+    // Redessiner l'ancienne position du joueur avec la couleur du fond
+    graph.setColor(XAM_BLUE);
+    graph.filledCircle(oldX, oldY, taille / 2);
+
+    // Dessiner le joueur à sa nouvelle position
     graph.setColor(XAM_YELLOW);
-    // Dessiner un cercle rempli à la position du joueur
     graph.filledCircle(x, y, taille / 2);
+
+    // Mettre à jour l'ancienne position
+    oldX = x;
+    oldY = y;
+}
+
+// Méthode pour mettre à jour la position du joueur
+void Joueur::updatePosition() {
+    switch (direction) {
+        case 'U':
+            if (y - deplacement >= 0) {
+                y -= deplacement;
+            }
+            break;
+        case 'D':
+            if (y + deplacement < HAUTEUR_GRILLE * TAILLE_CELLULE) {
+                y += deplacement;
+            }
+            break;
+        case 'L':
+            if (x - deplacement >= 0) {
+                x -= deplacement;
+            }
+            break;
+        case 'R':
+            if (x + deplacement < LARGEUR_GRILLE * TAILLE_CELLULE) {
+                x += deplacement;
+            }
+            break;
+    }
+}
+
+// Méthode pour changer la valeur de déplacement
+void Joueur::setDeplacement(int nouveauDeplacement) {
+    deplacement = nouveauDeplacement;
 }
 
 // Fonction pour gérer les entrées du clavier
@@ -23,28 +61,16 @@ void gererClavier(Joueur& joueur, SDL_Event& event) {
     if (event.type == SDL_KEYDOWN) {
         switch (event.key.keysym.sym) {
             case SDLK_UP:
-                // Déplacer le joueur vers le haut si la position est valide
-                if (joueur.y - joueur.taille * 2 >= 0) {
-                    joueur.y -= joueur.taille * 2;
-                }
+                joueur.direction = 'U';
                 break;
             case SDLK_DOWN:
-                // Déplacer le joueur vers le bas si la position est valide
-                if (joueur.y + joueur.taille * 2 < HAUTEUR_GRILLE * TAILLE_CELLULE) {
-                    joueur.y += joueur.taille * 2;
-                }
+                joueur.direction = 'D';
                 break;
             case SDLK_LEFT:
-                // Déplacer le joueur vers la gauche si la position est valide
-                if (joueur.x - joueur.taille * 2 >= 0) {
-                    joueur.x -= joueur.taille * 2;
-                }
+                joueur.direction = 'L';
                 break;
             case SDLK_RIGHT:
-                // Déplacer le joueur vers la droite si la position est valide
-                if (joueur.x + joueur.taille * 2 < LARGEUR_GRILLE * TAILLE_CELLULE) {
-                    joueur.x += joueur.taille * 2;
-                }
+                joueur.direction = 'R';
                 break;
         }
     }
