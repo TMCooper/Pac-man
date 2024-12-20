@@ -1,5 +1,6 @@
 #include <xamgraph.h>
-#include <boutton.h>
+#include "boutton.h"
+#include <iostream> // Pour les messages de débogage
 
 // Déclaration d'une instance globale de XamGraph
 extern XamGraph graph;
@@ -10,8 +11,9 @@ const int TAILLE_LARGEUR = 125;
 const int RECT_X = 625;
 const int RECT_Y = 605;
 
+// Fonction pour vérifier si la souris est au-dessus du bouton
 bool isMouseOverButton(int mouseX, int mouseY) {
-    // Vérifier si la souris est dans le rectangle du bouton
+    // Vérifie si les coordonnées de la souris sont dans les limites du rectangle du bouton
     return (mouseX >= RECT_X && mouseX <= RECT_X + TAILLE_LARGEUR &&
             mouseY >= RECT_Y && mouseY <= RECT_Y + TAILLE_HAUTEUR);
 }
@@ -47,10 +49,10 @@ void handle_mouse_click(SDL_Event& event) {
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);  // Obtenir la position actuelle de la souris
-        printf("Mouse X: %d, Mouse Y: %d\n", mouseX, mouseY);
+        std::cout << "Mouse X: " << mouseX << ", Mouse Y: " << mouseY << std::endl;
         // Vérifier si la souris est dans la zone du bouton Exit
         if (isMouseOverButton(mouseX, mouseY) && event.button.button == SDL_BUTTON_LEFT) {
-            printf("Le bouton Exit a été cliqué. Quitter le programme...\n");
+            std::cout << "Le bouton Exit a été cliqué. Quitter le programme..." << std::endl;
             exit(0);  // Quitter le programme
         }
     }
