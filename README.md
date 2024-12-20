@@ -35,3 +35,13 @@ Pour créer l'archive `tar.gz` contenant tous les fichiers nécessaires, utilise
 
 ```sh
 tar -czvf pacman.tar.gz *.cpp *.h Makefile README.txt
+```
+
+to make the game on the current folder :
+```sh
+make
+```
+
+to luch the game : 
+```sh
+./pacman
