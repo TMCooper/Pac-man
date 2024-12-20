@@ -1,9 +1,9 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
-#include "config.h" // Inclure config.h pour les constantes
+#include "config.h"
 
-// Déclaration de la fonction pour dessiner la grille
+// Fonction pour dessiner la grille
 void dessinerGrille(int lignes, int colonnes, int tailleCellule);
 
 #endif
