@@ -16,7 +16,7 @@
 # DESTDIR	répertoire de destination pour cible 'install'
 
 COMPILER	= g++
-TARGET		= main
+TARGET		= pacman
 VERSION		= 0.1
 XAMRELDIR	= XamGraph/src
 SRC			= main.cpp grille.cpp point.cpp joueur.cpp carte.cpp boutton.cpp
